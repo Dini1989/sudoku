@@ -35,7 +35,9 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 while True:
 
+    print("   a  b  c  d  e  f  g  h  i")
     for row in range(0,9):
+        print(row+1, end=" ")
         for column in range(0,9):
             print("[" , gridforprint(sudokugamegrid[row][column]), sep="" , end="]")
         print()
@@ -45,5 +47,5 @@ while True:
 
     inputfield = input("Please enter the coordinates and the value like this exaple: XYN: ")
 
-    sudokugamegrid[int(inputfield[0])][int(inputfield[1])] = int(inputfield[2])
+    sudokugamegrid[int(ord(inputfield[0])][int(inputfield[1])] = int(inputfield[2:])
 
