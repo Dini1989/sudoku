@@ -47,5 +47,5 @@ while True:
 
     inputfield = input("Please enter the coordinates and the value like this exaple: XYN: ")
 
-    sudokugamegrid[int(ord(inputfield[0])][int(inputfield[1])] = int(inputfield[2:])
+    sudokugamegrid[int(inputfield[0])][int(inputfield[1])] = int(inputfield[2:])
 
