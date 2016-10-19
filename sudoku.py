@@ -20,6 +20,40 @@ print()
 
 '''
 
+def table():
+    print("   a  b  c  d  e  f  g  h  i")
+    for row in range(0, 9):
+        print(row+1, end=" ")
+        for column in range(0, 9):
+            print("[" , gridforprint(sudokugamegrid[row][column]), sep="" , end="]")
+        print()
+
+    print("-" * 29)
+
+def handleinput():
+    while True: 
+        inputfield = input("Please enter the coordinates and the value like this exaple: XYN: ")
+        try:
+            inputrow= int(inputfield[0])-1
+            inputcolumn= int(inputfield[1])-1
+            inputvalue=int(inputfield[2:])
+            if not inputrow in range(0,9):
+                raise IndexError
+            if not inputcolumn in range(0,9):
+                raise IndexError
+            if not inputvalue in range(1,10):
+                raise ValueError
+            if sudokugamegrid[inputrow][inputcolumn] > 10:
+                raise ReferenceError
+            return inputrow , inputcolumn , inputvalue
+        except ReferenceError:
+            print("You can't modify the basefield value!")
+        except ValueError:
+            print("Oops!  That was no valid number.  Try again...")
+        except IndexError:
+            print("DDDDFDDFDFDFDFDFFDFINDEXERROR...")
+    
+
 
 def gridforprint(x):
     if x > 10:
@@ -34,22 +68,9 @@ sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16], [10, 12, 13, 10, 18, 10,
 
 while True:
     
+    table()
 
-    print("   a  b  c  d  e  f  g  h  i")
-    for row in range(0, 9):
-        print(row+1, end=" ")
-        for column in range(0, 9):
-            print("[" , gridforprint(sudokugamegrid[row][column]), sep="" , end="]")
-        print()
+    row, column, value = handleinput() 
 
-    print("-" * 27)
-
-    inputfield = input("Please enter the coordinates and the value like this exaple: XYN: ")
-
-    if sudokugamegrid[int(inputfield[0])][int(inputfield[1])] > 10:
-        print("You can't modify the basefield value!'")
-    else: 
-        sudokugamegrid[int(inputfield[0])][int(inputfield[1])] = int(inputfield[2:])
-
-    
+    sudokugamegrid[row][column] = value
 
