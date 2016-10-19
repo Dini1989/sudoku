@@ -41,7 +41,7 @@ def handleinput():
                 raise IndexError
             if not inputcolumn in range(0,9):
                 raise IndexError
-            if not inputvalue in range(1,10):
+            if not inputvalue in range(1,11):
                 raise ValueError
             if sudokugamegrid[inputrow][inputcolumn] > 10:
                 raise ReferenceError
