@@ -53,8 +53,6 @@ def handleinput():
         except IndexError:
             print("DDDDFDDFDFDFDFDFFDFINDEXERROR...")
     
-
-
 def gridforprint(x):
     if x > 10:
         return x - 10
@@ -73,4 +71,3 @@ while True:
     row, column, value = handleinput() 
 
     sudokugamegrid[row][column] = value
-
