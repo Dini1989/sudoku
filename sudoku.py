@@ -42,7 +42,8 @@ def table():
 
 def handleinput():
     while True:
-        inputfield = input("Please enter the coordinates and the value like this exaple: XYN: ")
+        inputfield = input(
+            "Please enter the coordinates and the value like this exaple: XYN: ")
         try:
             inputrow = int(inputfield[0]) - 1
             inputcolumn = int(inputfield[1]) - 1
