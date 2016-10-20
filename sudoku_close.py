@@ -1,18 +1,33 @@
 import os
 from copy import deepcopy
 
+'''
+for x in range(10.9):
+    print("-" * 27)
+
+for row in range(0,9):
+    for column in range(0,9):
+        print("[" , sudokugrid[row][column] , sep="" , end="]")
+    print()
+
+
+
+print()
+print("-" * 27)
+print()
+
+'''
+
 
 def gridtransformer(x):
     if x > 10:
         return x - 10
     if x == 10:
-        return "·"
+        return " "
     return x
 
 
 def table():
-    bold = "\033[1m"
-    reset = "\033[0;0m"
     print("   a  b  c    d  e  f    g  h  i\n")
     for row in range(0, 9):
         if row == 3:
@@ -25,11 +40,7 @@ def table():
                 print("｜", end="")
             if column == 6:
                 print("｜", end="")
-
-            if (sudokugamegrid[row][column]) > 10:
-                print(" ", "\033[93m", bold, gridtransformer(sudokugamegrid[row][column]), reset, sep="", end=" ")
-            else:
-                print(" ", "\033[95m", gridtransformer(sudokugamegrid[row][column]), reset, sep="", end=" ")
+            print(" ", gridtransformer(sudokugamegrid[row][column]), sep="", end=" ")
         print()
 
     print("-" * 31)
@@ -66,7 +77,7 @@ def handleinput():
             "Please enter the coordinates and the value like this exaple: XYN: ")
         try:
             inputrow = int(inputfield[0]) - 1
-            inputcolumn = int(ord(inputfield[1])) - 97
+            inputcolumn = int(inputfield[1]) - 1
             inputvalue = int(inputfield[2:])
             if inputrow not in range(0, 9):
                 raise IndexError
@@ -107,7 +118,7 @@ def sudoku_match_sum(x, y):
                 how_many_matches.append(0)
     return sum(how_many_matches)
 
-
+"""
 sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [10, 12, 13, 10, 18, 10, 10, 14, 10],
                   [18, 10, 10, 10, 10, 13, 10, 10, 11],
@@ -117,6 +128,17 @@ sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [19, 10, 10, 14, 10, 10, 10, 10, 17],
                   [10, 16, 10, 10, 17, 10, 15, 18, 10],
                   [17, 10, 10, 10, 11, 10, 13, 19, 10]]
+
+"""
+sudokugamegrid = [[6, 7, 5, 2, 9, 4, 8, 3, 6],
+                  [6, 2, 3, 1, 8, 7, 9, 4, 5],
+                  [8, 9, 4, 5, 6, 3, 2, 7, 1],
+                  [5, 1, 9, 7, 3, 2, 4, 6, 8],
+                  [3, 4, 7, 8, 5, 6, 1, 2, 9],
+                  [2, 8, 6, 9, 4, 1, 7, 5, 3],
+                  [9, 3, 8, 4, 2, 5, 6, 1, 7],
+                  [4, 6, 1, 3, 7, 9, 5, 8, 2],
+                  [7, 5, 2, 6, 1, 8, 3, 9, 4]]
 
 
 sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
