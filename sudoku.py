@@ -28,14 +28,22 @@ def gridtransformer(x):
 
 
 def table():
-    print("   a  b  c  d  e  f  g  h  i")
+    print("   a  b  c   d  e  f   g  h  i")
     for row in range(0, 9):
+        if row == 3:
+            print("  -----------------------------")
+        if row == 6:
+            print("  -----------------------------")
         print(row + 1, end=" ")
         for column in range(0, 9):
+            if column == 3:
+                print(":", end="")
+            if column == 6:
+                print(":", end="")
             print("[", gridtransformer(sudokugamegrid[row][column]), sep="", end="]")
         print()
 
-    print("-" * 29)
+    print("-" * 31)
 
 
 def helper_input():
