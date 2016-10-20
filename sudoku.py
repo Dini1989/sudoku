@@ -38,22 +38,25 @@ def table():
 def helper_input():
     while True:
         inputfield = input(
-            "Type check to be sure about completition. Type any other thing to continue: ")
+            "Type check to be sure about completition. Type exit to quit the game. Type any other thing to continue: ")
 
         os.system('cls' if os.name == 'nt' else 'clear')
+
+        if inputfield == "exit":
+            exit(0)
 
         if inputfield == "check":
             sudoku_list_matcher(clonelist)
             if int(sudoku_match_sum(clonelist, sudokugridsolution)) == int(81):
 
                 table()
-                print(sudoku_match_sum(clonelist, sudokugridsolution))
-                print("\n!!!!!!!!!!!YOU WON!!!!!!!!!!!\n")
+
+                print("\n!!!!!!!!!!!!YOU WON!!!!!!!!!!!!\n")
                 input("Press any key to exit")
                 exit()
             else:
                 table()
-                print(sudoku_match_sum(clonelist, sudokugridsolution))
+
                 print("Keep play")
         else:
             break
@@ -61,9 +64,8 @@ def helper_input():
 
 def handleinput():
     while True:
-
         inputfield = input(
-            "Please enter the coordinates and the value like this exaple: XYN: ")
+            "\nAdd the coordinates and the value. Remember! You can delete with value 10\nEnter you choice:")
         try:
             inputrow = int(inputfield[0]) - 1
             inputcolumn = int(ord(inputfield[1])) - 97
@@ -128,6 +130,12 @@ sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
                       [9, 3, 8, 4, 2, 5, 6, 1, 7],
                       [4, 6, 1, 3, 7, 9, 5, 8, 2],
                       [7, 5, 2, 6, 1, 8, 3, 9, 4]]
+
+print("\nWELLCOME TO SUDOKU\n by Petya & Dénes\n ")
+
+print("\nAdd numbers correctly into their places. You can quit the game on the checker screen. \n ")
+
+print("Please enter the coordinates and the value like this example: 1a5, use the helper grids to identify the coordinates. Use 10 value as delete like in this example: 1a10. \n")
 
 
 while True:
