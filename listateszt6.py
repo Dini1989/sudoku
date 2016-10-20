@@ -1,34 +1,33 @@
 from copy import deepcopy
 
 
-def clone_list(list1):
-    juh = deepcopy(list1)
-    return juh
+def clone_list(x):
+    y = deepcopy(x)
 
 
-def sudoku_list_matcher(list1):
+def sudoku_list_matcher(x):
     for i in range(0, 9):
         for n in range(0, 9):
-            if list1[i][n] > 10:
-                list1[i][n] = list1[i][n] - 10
+            if x[i][n] > 10:
+                x[i][n] = x[i][n] - 10
 
 
-def sudoku_match_list(list1, list2):
+def sudoku_match_list(x, y):
     how_many_matches = []
     for i in range(0, 9):
         for n in range(0, 9):
-            if list1[i][n] == list2[i][n]:
+            if x[i][n] == y[i][n]:
                 how_many_matches.append(1)
             else:
                 how_many_matches.append(0)
     return how_many_matches
 
 
-def sudoku_match_sum(list1, list2):
+def sudoku_match_sum(x, y):
     how_many_matches = []
     for i in range(0, 9):
         for n in range(0, 9):
-            if list1[i][n] == list2[i][n]:
+            if x[i][n] == y[i][n]:
                 how_many_matches.append(1)
             else:
                 how_many_matches.append(0)
