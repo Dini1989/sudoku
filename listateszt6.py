@@ -3,6 +3,7 @@ from copy import deepcopy
 
 def clone_list(x):
     y = deepcopy(x)
+    return y
 
 
 def sudoku_list_matcher(x):

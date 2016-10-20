@@ -41,19 +41,30 @@ def table():
 def helper_input():
     while True:
         inputfield = input(
-            "Type check to be sure about completition. Type help if u want some. Type any other thing to continue: ")
+            "Type check to be sure about completition. Type any other thing to continue: ")
+
+        os.system('cls' if os.name == 'nt' else 'clear')
 
         if inputfield == "check":
-            print("BBBBBB")
-        if inputfield == "help":
-            print("AAAAAAA")
+            sudoku_list_matcher(clonelist)
+            if int(sudoku_match_sum(clonelist, sudokugridsolution)) == int(81):
 
+                table()
+                print(sudoku_match_sum(clonelist, sudokugridsolution))
+                print("\n!!!!!!!!!!!YOU WON!!!!!!!!!!!\n")
+                input("Press any key to exit")
+                exit()
+            else:
+                table()
+                print(sudoku_match_sum(clonelist, sudokugridsolution))
+                print("Keep play")
         else:
             break
 
 
 def handleinput():
     while True:
+
         inputfield = input(
             "Please enter the coordinates and the value like this exaple: XYN: ")
         try:
@@ -76,9 +87,10 @@ def handleinput():
         except ReferenceError:
             print("You can't modify the basefield value!")
 
-"""
+
 def clone_list(x):
     y = deepcopy(x)
+    return y
 
 
 def sudoku_list_matcher(x):
@@ -86,17 +98,6 @@ def sudoku_list_matcher(x):
         for n in range(0, 9):
             if x[i][n] > 10:
                 x[i][n] = x[i][n] - 10
-
-
-def sudoku_match_list(x, y):
-    how_many_matches = []
-    for i in range(0, 9):
-        for n in range(0, 9):
-            if x[i][n] == y[i][n]:
-                how_many_matches.append(1)
-            else:
-                how_many_matches.append(0)
-    return how_many_matches
 
 
 def sudoku_match_sum(x, y):
@@ -110,8 +111,6 @@ def sudoku_match_sum(x, y):
     return sum(how_many_matches)
 
 """
-
-
 sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [10, 12, 13, 10, 18, 10, 10, 14, 10],
                   [18, 10, 10, 10, 10, 13, 10, 10, 11],
@@ -121,6 +120,18 @@ sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [19, 10, 10, 14, 10, 10, 10, 10, 17],
                   [10, 16, 10, 10, 17, 10, 15, 18, 10],
                   [17, 10, 10, 10, 11, 10, 13, 19, 10]]
+
+"""
+sudokugamegrid = [[6, 7, 5, 2, 9, 4, 8, 3, 6],
+                  [5, 2, 3, 1, 8, 7, 9, 4, 5],
+                  [8, 9, 4, 5, 6, 3, 2, 7, 1],
+                  [5, 1, 9, 7, 3, 2, 4, 6, 8],
+                  [4, 4, 7, 8, 5, 6, 1, 2, 9],
+                  [2, 8, 6, 9, 4, 1, 7, 5, 3],
+                  [9, 3, 8, 4, 2, 5, 6, 1, 7],
+                  [4, 6, 1, 3, 7, 9, 5, 8, 2],
+                  [7, 5, 2, 6, 1, 8, 3, 9, 4]]
+
 
 sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
                       [6, 2, 3, 1, 8, 7, 9, 4, 5],
@@ -140,5 +151,13 @@ while True:
     row, column, value = handleinput()
 
     sudokugamegrid[row][column] = value
+
+    clone_list(sudokugamegrid)
+
+    clonelist = clone_list(sudokugamegrid)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    table()
 
     helper_input()
