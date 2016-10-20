@@ -10,3 +10,5 @@ print(id(list2))
 
 print(id(list1[3]))
 print(id(list2[3]))
+
+print(list2)

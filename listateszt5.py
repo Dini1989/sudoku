@@ -1,7 +1,6 @@
-def clone_list(list1):
-    ret_list = list1.copy()
-    for target_list in list1:
-        pass
+from copy import deepcopy
+
+sudokudeepcopy = deepcopy(sudokugamegrid)
 
 
 def sudoku_list_matcher(list1):
@@ -56,5 +55,6 @@ sudokugridsolution = [
     [7, 5, 2, 6, 1, 8, 3, 9, 4]]
 
 sudoku_list_matcher()
-print(sudoku_match_list(sudokugamegrid, sudokugridsolution))
-print(sudoku_match_sum(sudokugamegrid, sudokugridsolution))
+sudoku_list_matcher(sudokudeepcopy)
+print(sudoku_match_list(sudokudeepcopy, sudokugridsolution))
+print(sudoku_match_sum(sudokudeepcopy, sudokugridsolution))
