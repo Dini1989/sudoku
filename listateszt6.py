@@ -1,13 +1,16 @@
 from copy import deepcopy
 
-sudokudeepcopy = deepcopy(sudokugamegrid)
+
+def clone_list(list1):
+    juh = deepcopy(list1)
+    return juh
 
 
 def sudoku_list_matcher(list1):
-     for i in range(0, 9):
+    for i in range(0, 9):
         for n in range(0, 9):
             if list1[i][n] > 10:
-                 list1[i][n] = list1[i][n] - 10
+                list1[i][n] = list1[i][n] - 10
 
 
 def sudoku_match_list(list1, list2):
@@ -54,7 +57,8 @@ sudokugridsolution = [
     [4, 6, 1, 3, 7, 9, 5, 8, 2],
     [7, 5, 2, 6, 1, 8, 3, 9, 4]]
 
-sudoku_list_matcher()
-sudoku_list_matcher(sudokudeepcopy)
-print(sudoku_match_list(sudokudeepcopy, sudokugridsolution))
-print(sudoku_match_sum(sudokudeepcopy, sudokugridsolution))
+clonelist = clone_list(sudokugamegrid)
+sudoku_list_matcher(clonelist)
+sudoku_match_sum(clonelist, sudokugridsolution)
+print(sudoku_match_list(clonelist, sudokugridsolution))
+print(sudoku_match_sum(clonelist, sudokugridsolution))
