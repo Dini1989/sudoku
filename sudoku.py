@@ -1,4 +1,5 @@
 import os
+from copy import deepcopy
 
 '''
 for x in range(10.9): 
