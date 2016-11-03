@@ -216,9 +216,6 @@ def hint_table():
             if (sudokugamegrid[row][column]) > 10:
                 print(" ", "\033[93m", bold, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
-for x,y in zip(clonelist,sudokugridsolution):
-    if clonelist[x-1] == sudokugridsolution[y-1]:
-        sudokugridsolution[y-1]
             else:
                 print(" ", "\033[95m", gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
@@ -306,38 +303,46 @@ def sudoku_match_sum(x, y):
     return sum(how_many_matches)
 
 
-def map_selector(x):
+def map_selector():
+
+    x = input("""
+Please choose from four grid and
+three difficulty level, like you see in this example:
+'map1 normal' or 'map3 hard'
+Type in your choice:""")
 
     global sudokugamegrid
     global sudokugridsolution
 
-    if x == "map1 hard":
-        pass
-    if x == "map1 normal":
-        sudokugamegrid = sudokugamegridnormal
-    if x == "map1 easy":
-        sudokugamegrid = sudokugamegrideasy
-    if x == "map2 hard":
-        sudokugamegrid = table2hard
-        sudokugridsolution = table2solution
-    if x == "map2 normal":
-        sudokugamegrid = table2normal
-        sudokugridsolution = table2solution
-    if x == "map2 easy":
-        sudokugamegrid = table2easy
-        sudokugridsolution = table2easy
-    if x == "map3 hard":
-        sudokugamegrid = table3hard
-        sudokugridsolution = table3solution
-    if x == "map3 normal":
-        sudokugamegrid = table3normal
-        sudokugridsolution = table3solution
-    if x == "map3 easy":
-        sudokugamegrid = table3easy
-        sudokugridsolution = table3solution
-    else:
+    try:
+        if x == "map1 hard":
+            pass
+        if x == "map1 normal":
+            sudokugamegrid = sudokugamegridnormal
+        if x == "map1 easy":
+            sudokugamegrid = sudokugamegrideasy
+        if x == "map2 hard":
+            sudokugamegrid = table2hard
+            sudokugridsolution = table2solution
+        if x == "map2 normal":
+            sudokugamegrid = table2normal
+            sudokugridsolution = table2solution
+        if x == "map2 easy":
+            sudokugamegrid = table2easy
+            sudokugridsolution = table2easy
+        if x == "map3 hard":
+            sudokugamegrid = table3hard
+            sudokugridsolution = table3solution
+        if x == "map3 normal":
+            sudokugamegrid = table3normal
+            sudokugridsolution = table3solution
+        if x == "map3 easy":
+            sudokugamegrid = table3easy
+            sudokugridsolution = table3solution
+    except ValueError:
         print("Choose a valid table")
-        map_selector()
+        continue
+
 
 # Intro text to the program
 
@@ -367,13 +372,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 # Running the functions in the proper order.
 
-x = input("""
-Please choose from four grid and
-three difficulty level, like you see in this example:
-'map1 normal' or 'map3 hard'
-Type in your choice:""")
-
-map_selector(x)
+map_selector()
 
 while True:
 
