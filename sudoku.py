@@ -1,11 +1,11 @@
-#Wellcome to Petya's and Dénes's sudoku game
+# Wellcome to Petya's and Dénes's sudoku game
 
-
+import time
 import os
 from copy import deepcopy
 
 
-# Source of the grid generation.
+# Source of the grid1 generation.
 
 
 sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
@@ -18,8 +18,28 @@ sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [10, 16, 10, 10, 17, 10, 15, 18, 10],
                   [17, 10, 10, 10, 11, 10, 13, 19, 10]]
 
+sudokugamegridnormal = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
+                        [10, 12, 13, 10, 18, 10, 10, 14, 10],
+                        [18, 10, 10, 10, 10, 13, 10, 10, 11],
+                        [15, 10, 10, 17, 10, 12, 14, 10, 10],
+                        [10, 14, 10, 18, 10, 16, 10, 12, 10],
+                        [10, 18, 10, 19, 10, 11, 17, 10, 13],
+                        [19, 10, 10, 14, 10, 10, 10, 10, 17],
+                        [10, 16, 10, 10, 17, 10, 15, 18, 10],
+                        [17, 10, 10, 10, 11, 10, 13, 19, 10]]
 
-# Source of the good solution checker grid.
+sudokugamegrideasy = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
+                      [10, 12, 13, 10, 18, 10, 10, 14, 10],
+                      [18, 10, 14, 10, 10, 13, 10, 10, 11],
+                      [15, 10, 10, 17, 10, 12, 14, 10, 18],
+                      [10, 14, 10, 18, 10, 16, 10, 12, 10],
+                      [10, 18, 10, 19, 10, 11, 17, 10, 13],
+                      [19, 10, 10, 14, 10, 10, 10, 10, 17],
+                      [10, 16, 10, 10, 17, 10, 15, 18, 10],
+                      [17, 10, 12, 10, 11, 10, 13, 19, 10]]
+
+
+# Source of the good solution checker grid1.
 
 
 sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
@@ -31,6 +51,113 @@ sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
                       [9, 3, 8, 4, 2, 5, 6, 1, 7],
                       [4, 6, 1, 3, 7, 9, 5, 8, 2],
                       [7, 5, 2, 6, 1, 8, 3, 9, 4]]
+
+# GRID2
+
+table2hard = [[10, 10, 14, 10, 17, 15, 10, 10, 10],
+              [11, 10, 10, 12, 10, 10, 10, 18, 10],
+              [10, 12, 10, 10, 10, 10, 17, 10, 10],
+              [19, 18, 10, 10, 10, 10, 14, 10, 10],
+              [13, 10, 10, 11, 10, 19, 10, 10, 17],
+              [10, 10, 10, 10, 10, 10, 10, 12, 18],
+              [10, 10, 11, 10, 10, 10, 10, 16, 10],
+              [10, 16, 10, 10, 10, 17, 10, 10, 19],
+              [10, 10, 10, 15, 14, 10, 18, 10, 10]]
+
+table2normal = [[10, 10, 14, 10, 17, 15, 10, 10, 10],
+                [11, 10, 10, 12, 10, 10, 10, 18, 10],
+                [10, 12, 10, 10, 10, 10, 17, 10, 10],
+                [19, 18, 10, 17, 10, 10, 14, 10, 10],
+                [13, 10, 10, 11, 10, 19, 10, 10, 17],
+                [10, 11, 10, 10, 10, 10, 10, 12, 18],
+                [10, 10, 11, 10, 10, 10, 10, 16, 10],
+                [10, 16, 10, 16, 10, 17, 10, 10, 19],
+                [10, 10, 10, 15, 14, 10, 18, 10, 10]]
+
+table2easy = [[18, 10, 14, 10, 17, 15, 10, 10, 16],
+              [11, 10, 10, 12, 10, 10, 10, 18, 10],
+              [10, 12, 10, 10, 10, 10, 17, 10, 10],
+              [19, 18, 10, 17, 10, 10, 14, 10, 10],
+              [13, 10, 10, 11, 10, 19, 10, 10, 17],
+              [10, 11, 10, 10, 16, 10, 10, 12, 18],
+              [10, 10, 11, 10, 10, 10, 10, 16, 10],
+              [10, 16, 10, 16, 10, 17, 10, 10, 19],
+              [10, 10, 10, 15, 14, 10, 18, 10, 13]]
+# GRID2solution
+table2solution = [[8, 9, 4, 3, 7, 5, 2, 1, 6],
+                  [1, 5, 7, 2, 9, 6, 3, 8, 4],
+                  [6, 2, 3, 8, 1, 4, 7, 9, 5],
+                  [9, 8, 6, 7, 5, 2, 4, 3, 1],
+                  [3, 4, 2, 1, 8, 9, 6, 5, 7],
+                  [7, 1, 5, 4, 6, 3, 9, 2, 8],
+                  [4, 7, 1, 9, 3, 8, 5, 6, 2],
+                  [5, 3, 8, 6, 2, 7, 1, 4, 9],
+                  [2, 6, 9, 5, 4, 1, 8, 7, 3]]
+
+#GRID3
+
+table3hard = [[10, 10, 15, 13, 10, 10, 10, 10, 10],
+          [18, 10, 10, 10, 10, 10, 10, 12, 10],
+          [10, 17, 10, 10, 11, 10, 15, 10, 10],
+          [14, 10, 10, 10, 10, 15, 13, 10, 10],
+          [10, 11, 10, 10, 17, 10, 10, 10, 16],
+          [10, 10, 13, 12, 10, 10, 10, 18, 10],
+          [10, 16, 10, 15, 10, 10, 10, 10, 19],
+          [10, 10, 14, 10, 10, 10, 10, 13, 10],
+          [10, 10, 10, 10, 10, 19, 17, 10, 10]]
+
+table3normal = [[11, 10, 15, 13, 10, 10, 10, 10, 10],
+                [18, 10, 10, 10, 10, 10, 10, 12, 10],
+                [10, 17, 10, 10, 11, 10, 15, 10, 10],
+                [14, 10, 10, 10, 10, 15, 13, 10, 10],
+                [10, 11, 10, 10, 17, 10, 10, 10, 16],
+                [10, 10, 13, 12, 10, 10, 10, 18, 10],
+                [10, 16, 10, 15, 10, 12, 10, 10, 19],
+                [10, 10, 14, 10, 10, 10, 10, 13, 10],
+                [10, 10, 11, 10, 10, 19, 17, 10, 10]]
+
+table3easy = [[11, 10, 15, 13, 10, 10, 10, 10, 10],
+              [18, 10, 10, 10, 10, 10, 10, 12, 10],
+              [10, 17, 10, 10, 11, 10, 15, 10, 10],
+              [14, 10, 10, 10, 10, 15, 13, 10, 10],
+              [10, 11, 10, 10, 17, 10, 10, 10, 16],
+              [17, 10, 13, 12, 10, 16, 10, 18, 10],
+              [10, 16, 10, 15, 10, 12, 10, 10, 19],
+              [10, 10, 14, 10, 10, 10, 10, 13, 10],
+              [15, 10, 11, 10, 10, 19, 17, 10, 10]]
+
+#GRID3solution
+
+table3solution = [[1, 4, 5, 3, 2, 7, 6, 9, 8],
+                  [8, 3, 9, 6, 5, 4, 1, 2, 7],
+                  [6, 7, 2, 9, 1, 8, 5, 4, 3],
+                  [4, 9, 6, 1, 8, 5, 3, 7, 2],
+                  [2, 1, 8, 4, 7, 3, 9, 5, 6],
+                  [7, 5, 3, 2, 9, 6, 4, 8, 1],
+                  [3, 6, 7, 5, 4, 2, 8, 1, 9],
+                  [9, 8, 4, 7, 6, 1, 2, 3, 5],
+                  [5, 2, 1, 8, 3, 9, 7, 6, 4]]
+
+"""sudokugamegrid4 = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
+                   [10, 10, 10, 14, 19, 15, 10, 10, 10],
+                   [15, 10, 16, 10, 10, 10, 11, 10, 14],
+                   [10, 10, 11, 18, 10, 12, 13, 10, 10],
+                   [10, 11, 10, 10, 17, 10, 10, 10, 16],
+                   [10, 10, 13, 12, 10, 10, 10, 18, 10],
+                   [10, 16, 10, 15, 10, 10, 10, 10, 19],
+                   [10, 10, 14, 10, 10, 10, 10, 13, 10],
+                   [10, 10, 10, 10, 10, 19, 17, 10, 10]]
+
+
+sudokugridsolution4 = [[4, 7, 3, 2, 6, 1, 5, 9, 8],
+                       [8, 1, 2, 4, 9, 5, 3, 6, 7],
+                       [5, 9, 6, 3, 7, 8, 1, 2, 4],
+                       [7, 3, 1, 8, 5, 2, 6, 4, 9],
+                       [9, 2, 8, 1, 4, 6, 7, 5, 3],
+                       [6, 4, 5, 7, 3, 9, 2, 8, 1],
+                       [2, 6, 4, 9, 1, 3, 8, 7, 5],
+                       [3, 5, 9, 6, 8, 7, 4, 1, 2],
+                       [1, 8, 7, 5, 2, 4, 9, 3, 6]]"""
 
 
 # Generates the grid from the source and adds visuals. Also adds basic
@@ -61,12 +188,43 @@ def table():
             if column == 6:
                 print("｜", end="")
             if (sudokugamegrid[row][column]) > 10:
-                print(" ", "\033[93m", bold, gridtransformer(sudokugamegrid[row][column]), reset, sep="", end=" ")
+                print(" ", "\033[93m", bold, gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
             else:
-                print(" ", "\033[95m", gridtransformer(sudokugamegrid[row][column]), reset, sep="", end=" ")
+                print(" ", "\033[95m", gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
         print()
 
-    print("-" * 31)
+    print(" ", "-" * 29)
+
+
+def hint_table():
+    bold = "\033[1m"
+    reset = "\033[0;0m"
+    print("   a  b  c    d  e  f    g  h  i\n")
+    for row in range(0, 9):
+        if row == 3:
+            print("  -----------------------------")
+        if row == 6:
+            print("  -----------------------------")
+        print(row + 1, end=" ")
+        for column in range(0, 9):
+            if column == 3:
+                print("｜", end="")
+            if column == 6:
+                print("｜", end="")
+            if (sudokugamegrid[row][column]) > 10:
+                print(" ", "\033[93m", bold, gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+for x,y in zip(clonelist,sudokugridsolution):
+    if clonelist[x-1] == sudokugridsolution[y-1]:
+        sudokugridsolution[y-1]
+            else:
+                print(" ", "\033[95m", gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+        print()
+
+    print(" ", "-" * 29)
 
 
 # Handles the user inputs like uninterpretable expressions. Add rules to
@@ -77,7 +235,7 @@ def table():
 def handleinput():
     while True:
         inputfield = input(
-            "\nAdd the coordinates and the value.\nYou can delete with value '10'.\nOr write 'check' to check your solution.\nOr press exit to quit.\n\nEnter you choice:")
+            "\nAdd the coordinates and the value(example: 1a5).\nYou can delete with value '10'.\nOr write 'check' to check your solution.\nOr press exit to quit.\n\nEnter you choice:")
         if inputfield == str("exit"):
             exit()
         if inputfield == str("check"):
@@ -91,6 +249,7 @@ def handleinput():
                 exit()
             else:
                 print("\nContinue the game, it's not good yet :(")
+
         else:
             try:
                 inputrow = int(inputfield[0]) - 1
@@ -120,7 +279,8 @@ def handleinput():
                 print("\nYou can't modify the basefield value!")
 
 
-#Checking the solution by comparing the user modified basic grid with the solution grid.
+# Checking the solution by comparing the user modified basic grid with the
+# solution grid.
 
 
 def clone_list(x):
@@ -146,16 +306,74 @@ def sudoku_match_sum(x, y):
     return sum(how_many_matches)
 
 
-#Intro text to the program
+def map_selector(x):
 
+    global sudokugamegrid
+    global sudokugridsolution
 
-print("\nWELLCOME TO SUDOKU\n by Petya & Dénes\n ")
-print("\nAdd numbers correctly into their places. You can quit the game on the checker screen. \n ")
-print("Please enter the coordinates and the value like this example: 1a5, use the helper grids to identify the coordinates. Use 10 value as delete like in this example: 1a10. \n")
+    if x == "map1 hard":
+        pass
+    if x == "map1 normal":
+        sudokugamegrid = sudokugamegridnormal
+    if x == "map1 easy":
+        sudokugamegrid = sudokugamegrideasy
+    if x == "map2 hard":
+        sudokugamegrid = table2hard
+        sudokugridsolution = table2solution
+    if x == "map2 normal":
+        sudokugamegrid = table2normal
+        sudokugridsolution = table2solution
+    if x == "map2 easy":
+        sudokugamegrid = table2easy
+        sudokugridsolution = table2easy
+    if x == "map3 hard":
+        sudokugamegrid = table3hard
+        sudokugridsolution = table3solution
+    if x == "map3 normal":
+        sudokugamegrid = table3normal
+        sudokugridsolution = table3solution
+    if x == "map3 easy":
+        sudokugamegrid = table3easy
+        sudokugridsolution = table3solution
+    else:
+        print("Choose a valid table")
+        map_selector()
 
+# Intro text to the program
 
-#Running the functions in the proper order.
+os.system('cls' if os.name == 'nt' else 'clear')
+print("\033[1m", "\033[93m", '''    _n____n__
+     /         \---||--<  ___EXTERMINATE--
+    <___________>                   --SUDOKU___ 
+    _|____|____|_ 
+    _|____|____|_
+     |    |    | 
+    -------------- 
+    | || || || ||\ 
+    | || || || || \++++++++------< 
+    =============== 
+    |   |  |  |   |            by Petya 
+   (| O | O| O| O |)                & Dénes 
+   |   |   |   |   | 
+  (| O | O | O | O |) 
+   |   |   |   |    | 
+ (| O |  O | O  | O |)
+  |   |    |    |    |
+ (| O |  O |  O |  O |)
+ ======================''', "\033[m", "\033[0;0m")
+print("""\nAdd numbers correctly into their places.\nYou can quit the game on the checker screen.\nEnter the coordinates and the value(example: '1a5')! \nUse the helper grids to identify the coordinates!\nUse 10 value as delete like in this example: 1a10.""")
+time.sleep(1)
+os.system('cls' if os.name == 'nt' else 'clear')
 
+# Running the functions in the proper order.
+
+x = input("""
+Please choose from four grid and
+three difficulty level, like you see in this example:
+'map1 normal' or 'map3 hard'
+Type in your choice:""")
+
+map_selector(x)
 
 while True:
 
@@ -178,4 +396,4 @@ while True:
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-#The file ends here. Live long and prosper!
+# The file ends here. Live long and prosper!
