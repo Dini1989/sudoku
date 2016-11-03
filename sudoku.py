@@ -197,8 +197,7 @@ def table():
 
     print(" ", "-" * 29)
 
-
-def hint_table():
+    def table():
     bold = "\033[1m"
     reset = "\033[0;0m"
     print("   a  b  c    d  e  f    g  h  i\n")
@@ -222,7 +221,6 @@ def hint_table():
         print()
 
     print(" ", "-" * 29)
-
 
 # Handles the user inputs like uninterpretable expressions. Add rules to
 # the game mechanics (Immutable basic existing characters on the grid
@@ -305,43 +303,52 @@ def sudoku_match_sum(x, y):
 
 def map_selector():
 
-    x = input("""
-Please choose from four grid and
+    global sudokugamegrid
+    global sudokugridsolution
+
+    while True:
+
+        x = input("""Please choose from four grid and
 three difficulty level, like you see in this example:
 'map1 normal' or 'map3 hard'
 Type in your choice:""")
 
-    global sudokugamegrid
-    global sudokugridsolution
-
-    try:
         if x == "map1 hard":
-            pass
+            break
         if x == "map1 normal":
             sudokugamegrid = sudokugamegridnormal
+            break
         if x == "map1 easy":
             sudokugamegrid = sudokugamegrideasy
+            break
         if x == "map2 hard":
             sudokugamegrid = table2hard
             sudokugridsolution = table2solution
+            break
         if x == "map2 normal":
             sudokugamegrid = table2normal
             sudokugridsolution = table2solution
+            break
         if x == "map2 easy":
             sudokugamegrid = table2easy
             sudokugridsolution = table2easy
+            break
         if x == "map3 hard":
             sudokugamegrid = table3hard
             sudokugridsolution = table3solution
+            break
         if x == "map3 normal":
             sudokugamegrid = table3normal
             sudokugridsolution = table3solution
+            break
         if x == "map3 easy":
             sudokugamegrid = table3easy
             sudokugridsolution = table3solution
-    except ValueError:
-        print("Choose a valid table")
-        continue
+            break
+        if x == "exit":
+            exit()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("Choose a valid table!\n")
 
 
 # Intro text to the program
@@ -371,7 +378,7 @@ time.sleep(1)
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Running the functions in the proper order.
-
+print("\n")
 map_selector()
 
 while True:
