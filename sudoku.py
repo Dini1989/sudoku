@@ -7,6 +7,15 @@ from copy import deepcopy
 
 # Source of the grid1 generation.
 
+sudokugamegridblank = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
+                       [10, 10, 10, 10, 10, 10, 10, 10, 10]]
 
 sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
                   [10, 12, 13, 10, 18, 10, 10, 14, 10],
@@ -94,17 +103,17 @@ table2solution = [[8, 9, 4, 3, 7, 5, 2, 1, 6],
                   [5, 3, 8, 6, 2, 7, 1, 4, 9],
                   [2, 6, 9, 5, 4, 1, 8, 7, 3]]
 
-#GRID3
+# GRID3
 
 table3hard = [[10, 10, 15, 13, 10, 10, 10, 10, 10],
-          [18, 10, 10, 10, 10, 10, 10, 12, 10],
-          [10, 17, 10, 10, 11, 10, 15, 10, 10],
-          [14, 10, 10, 10, 10, 15, 13, 10, 10],
-          [10, 11, 10, 10, 17, 10, 10, 10, 16],
-          [10, 10, 13, 12, 10, 10, 10, 18, 10],
-          [10, 16, 10, 15, 10, 10, 10, 10, 19],
-          [10, 10, 14, 10, 10, 10, 10, 13, 10],
-          [10, 10, 10, 10, 10, 19, 17, 10, 10]]
+              [18, 10, 10, 10, 10, 10, 10, 12, 10],
+              [10, 17, 10, 10, 11, 10, 15, 10, 10],
+              [14, 10, 10, 10, 10, 15, 13, 10, 10],
+              [10, 11, 10, 10, 17, 10, 10, 10, 16],
+              [10, 10, 13, 12, 10, 10, 10, 18, 10],
+              [10, 16, 10, 15, 10, 10, 10, 10, 19],
+              [10, 10, 14, 10, 10, 10, 10, 13, 10],
+              [10, 10, 10, 10, 10, 19, 17, 10, 10]]
 
 table3normal = [[11, 10, 15, 13, 10, 10, 10, 10, 10],
                 [18, 10, 10, 10, 10, 10, 10, 12, 10],
@@ -126,7 +135,7 @@ table3easy = [[11, 10, 15, 13, 10, 10, 10, 10, 10],
               [10, 10, 14, 10, 10, 10, 10, 13, 10],
               [15, 10, 11, 10, 10, 19, 17, 10, 10]]
 
-#GRID3solution
+# GRID3solution
 
 table3solution = [[1, 4, 5, 3, 2, 7, 6, 9, 8],
                   [8, 3, 9, 6, 5, 4, 1, 2, 7],
@@ -162,16 +171,6 @@ sudokugridsolution4 = [[4, 7, 3, 2, 6, 1, 5, 9, 8],
 
 # Generates the grid from the source and adds visuals. Also adds basic
 # rules about the displayed grid (17 visualised as 7 etc.)
-
-
-def gridtransformer(x):
-    if x > 10:
-        return x - 10
-    if x == 10:
-        return "·"
-    return x
-
-
 def table():
     bold = "\033[1m"
     reset = "\033[0;0m"
@@ -197,7 +196,8 @@ def table():
 
     print(" ", "-" * 29)
 
-    def table():
+
+def tableblank():
     bold = "\033[1m"
     reset = "\033[0;0m"
     print("   a  b  c    d  e  f    g  h  i\n")
@@ -212,15 +212,24 @@ def table():
                 print("｜", end="")
             if column == 6:
                 print("｜", end="")
-            if (sudokugamegrid[row][column]) > 10:
+            if (sudokugamegridblank[row][column]) > 10:
                 print(" ", "\033[93m", bold, gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+                    sudokugamegridblank[row][column]), reset, sep="", end=" ")
             else:
                 print(" ", "\033[95m", gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+                    sudokugamegridblank[row][column]), reset, sep="", end=" ")
         print()
 
     print(" ", "-" * 29)
+
+
+def gridtransformer(x):
+    if x > 10:
+        return x - 10
+    if x == 10:
+        return "·"
+    return x
+
 
 # Handles the user inputs like uninterpretable expressions. Add rules to
 # the game mechanics (Immutable basic existing characters on the grid
@@ -308,6 +317,10 @@ def map_selector():
 
     while True:
 
+        os.system('cls' if os.name == 'nt' else 'clear')
+        tableblank()
+        print ("\n\n")
+
         x = input("""Please choose from four grid and
 three difficulty level, like you see in this example:
 'map1 normal' or 'map3 hard'
@@ -347,8 +360,6 @@ Type in your choice:""")
             break
         if x == "exit":
             exit()
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("Choose a valid table!\n")
 
 
 # Intro text to the program
@@ -378,8 +389,11 @@ time.sleep(1)
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Running the functions in the proper order.
-print("\n")
+
+
 map_selector()
+
+os.system('cls' if os.name == 'nt' else 'clear')
 
 while True:
 
