@@ -174,12 +174,15 @@ sudokugridsolution4 = [[4, 7, 3, 2, 6, 1, 5, 9, 8],
 def table():
     bold = "\033[1m"
     reset = "\033[0;0m"
+    yellow = "\033[93m"
+    purple = "\033[95m"
+    # blue = "\033[92m"
     print("   a  b  c    d  e  f    g  h  i\n")
     for row in range(0, 9):
         if row == 3:
-            print("  -----------------------------")
+            print("   -----------------------------")
         if row == 6:
-            print("  -----------------------------")
+            print("   -----------------------------")
         print(row + 1, end=" ")
         for column in range(0, 9):
             if column == 3:
@@ -187,40 +190,41 @@ def table():
             if column == 6:
                 print("｜", end="")
             if (sudokugamegrid[row][column]) > 10:
-                print(" ", "\033[93m", bold, gridtransformer(
+                print(" ", yellow, bold, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
+            #if (sudokugamegrid[row][column]) > 20:
+                #print(" ", blue, bold, gridtransformer(
+                    #sudokugamegrid[row][column]), reset, sep="", end=" ")
             else:
-                print(" ", "\033[95m", gridtransformer(
+                print(" ", purple, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
         print()
 
-    print(" ", "-" * 29)
+    print("   -----------------------------")
 
 
 def tableblank():
     bold = "\033[1m"
     reset = "\033[0;0m"
+    purple = "\033[95m"
     print("   a  b  c    d  e  f    g  h  i\n")
     for row in range(0, 9):
         if row == 3:
-            print("  -----------------------------")
+            print("   -----------------------------")
         if row == 6:
-            print("  -----------------------------")
+            print("   -----------------------------")
         print(row + 1, end=" ")
         for column in range(0, 9):
             if column == 3:
                 print("｜", end="")
             if column == 6:
                 print("｜", end="")
-            if (sudokugamegridblank[row][column]) > 10:
-                print(" ", "\033[93m", bold, gridtransformer(
-                    sudokugamegridblank[row][column]), reset, sep="", end=" ")
-            else:
-                print(" ", "\033[95m", gridtransformer(
+            if sudokugamegridblank[row][column] == 10:
+                print(" ", purple, gridtransformer(
                     sudokugamegridblank[row][column]), reset, sep="", end=" ")
         print()
 
-    print(" ", "-" * 29)
+    print("   -----------------------------")
 
 
 def gridtransformer(x):
@@ -228,6 +232,8 @@ def gridtransformer(x):
         return x - 10
     if x == 10:
         return "·"
+    #if x > 20
+        #return x - 20
     return x
 
 
@@ -297,6 +303,8 @@ def sudoku_list_matcher(x):
         for n in range(0, 9):
             if x[i][n] > 10:
                 x[i][n] = x[i][n] - 10
+           # if x[i][n] > 20:
+            #    x[i][n] = x[i][n] - 20
 
 
 def sudoku_match_sum(x, y):
@@ -305,9 +313,10 @@ def sudoku_match_sum(x, y):
         for n in range(0, 9):
             if x[i][n] == y[i][n]:
                 how_many_matches.append(1)
+                #y[i][n] += 20
             else:
                 how_many_matches.append(0)
-    return sum(how_many_matches)
+    return sum(how_many_matches)#, y
 
 
 def map_selector():
@@ -321,9 +330,11 @@ def map_selector():
         tableblank()
         print ("\n\n")
 
-        x = input("""Please choose from four grid and
+        x = input("""Please choose from three grid and
 three difficulty level, like you see in this example:
 'map1 normal' or 'map3 hard'
+If you want to quit type 'exit'
+You only can pass with a valid input. 
 Type in your choice:""")
 
         if x == "map1 hard":
