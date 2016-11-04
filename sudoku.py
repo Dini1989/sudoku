@@ -7,59 +7,59 @@ from copy import deepcopy
 
 # Source of the grid1 generation.
 
-sudokugamegridblank = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10],
-                       [10, 10, 10, 10, 10, 10, 10, 10, 10]]
+table_blank = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10],
+               [10, 10, 10, 10, 10, 10, 10, 10, 10]]
 
-sudokugamegrid = [[10, 27, 15, 10, 19, 10, 10, 10, 16],
-                  [10, 12, 13, 10, 18, 10, 10, 14, 10],
-                  [18, 10, 10, 10, 10, 13, 10, 10, 11],
-                  [15, 10, 10, 17, 10, 12, 10, 10, 10],
-                  [10, 14, 10, 18, 10, 16, 10, 12, 10],
-                  [10, 10, 10, 19, 10, 11, 10, 10, 13],
-                  [19, 10, 10, 14, 10, 10, 10, 10, 17],
-                  [10, 16, 10, 10, 17, 10, 15, 18, 10],
-                  [17, 10, 10, 10, 11, 10, 13, 19, 10]]
+table1hard = [[10, 27, 15, 10, 19, 10, 10, 10, 16],
+              [10, 12, 13, 10, 18, 10, 10, 14, 10],
+              [18, 10, 10, 10, 10, 13, 10, 10, 11],
+              [15, 10, 10, 17, 10, 12, 10, 10, 10],
+              [10, 14, 10, 18, 10, 16, 10, 12, 10],
+              [10, 10, 10, 19, 10, 11, 10, 10, 13],
+              [19, 10, 10, 14, 10, 10, 10, 10, 17],
+              [10, 16, 10, 10, 17, 10, 15, 18, 10],
+              [17, 10, 10, 10, 11, 10, 13, 19, 10]]
 
-sudokugamegridnormal = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
-                        [10, 12, 13, 10, 18, 10, 10, 14, 10],
-                        [18, 10, 10, 10, 10, 13, 10, 10, 11],
-                        [15, 10, 10, 17, 10, 12, 14, 10, 10],
-                        [10, 14, 10, 18, 10, 16, 10, 12, 10],
-                        [10, 18, 10, 19, 10, 11, 17, 10, 13],
-                        [19, 10, 10, 14, 10, 10, 10, 10, 17],
-                        [10, 16, 10, 10, 17, 10, 15, 18, 10],
-                        [17, 10, 10, 10, 11, 10, 13, 19, 10]]
+table1normal = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
+                [10, 12, 13, 10, 18, 10, 10, 14, 10],
+                [18, 10, 10, 10, 10, 13, 10, 10, 11],
+                [15, 10, 10, 17, 10, 12, 14, 10, 10],
+                [10, 14, 10, 18, 10, 16, 10, 12, 10],
+                [10, 18, 10, 19, 10, 11, 17, 10, 13],
+                [19, 10, 10, 14, 10, 10, 10, 10, 17],
+                [10, 16, 10, 10, 17, 10, 15, 18, 10],
+                [17, 10, 10, 10, 11, 10, 13, 19, 10]]
 
-sudokugamegrideasy = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
-                      [10, 12, 13, 10, 18, 10, 10, 14, 10],
-                      [18, 10, 14, 10, 10, 13, 10, 10, 11],
-                      [15, 10, 10, 17, 10, 12, 14, 10, 18],
-                      [10, 14, 10, 18, 10, 16, 10, 12, 10],
-                      [10, 18, 10, 19, 10, 11, 17, 10, 13],
-                      [19, 10, 10, 14, 10, 10, 10, 10, 17],
-                      [10, 16, 10, 10, 17, 10, 15, 18, 10],
-                      [17, 10, 12, 10, 11, 10, 13, 19, 10]]
+table1easy = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
+              [10, 12, 13, 10, 18, 10, 10, 14, 10],
+              [18, 10, 14, 10, 10, 13, 10, 10, 11],
+              [15, 10, 10, 17, 10, 12, 14, 10, 18],
+              [10, 14, 10, 18, 10, 16, 10, 12, 10],
+              [10, 18, 10, 19, 10, 11, 17, 10, 13],
+              [19, 10, 10, 14, 10, 10, 10, 10, 17],
+              [10, 16, 10, 10, 17, 10, 15, 18, 10],
+              [17, 10, 12, 10, 11, 10, 13, 19, 10]]
 
 
 # Source of the good solution checker grid1.
 
 
-sudokugridsolution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
-                      [6, 2, 3, 1, 8, 7, 9, 4, 5],
-                      [8, 9, 4, 5, 6, 3, 2, 7, 1],
-                      [5, 1, 9, 7, 3, 2, 4, 6, 8],
-                      [3, 4, 7, 8, 5, 6, 1, 2, 9],
-                      [2, 8, 6, 9, 4, 1, 7, 5, 3],
-                      [9, 3, 8, 4, 2, 5, 6, 1, 7],
-                      [4, 6, 1, 3, 7, 9, 5, 8, 2],
-                      [7, 5, 2, 6, 1, 8, 3, 9, 4]]
+table1solution = [[1, 7, 5, 2, 9, 4, 8, 3, 6],
+                  [6, 2, 3, 1, 8, 7, 9, 4, 5],
+                  [8, 9, 4, 5, 6, 3, 2, 7, 1],
+                  [5, 1, 9, 7, 3, 2, 4, 6, 8],
+                  [3, 4, 7, 8, 5, 6, 1, 2, 9],
+                  [2, 8, 6, 9, 4, 1, 7, 5, 3],
+                  [9, 3, 8, 4, 2, 5, 6, 1, 7],
+                  [4, 6, 1, 3, 7, 9, 5, 8, 2],
+                  [7, 5, 2, 6, 1, 8, 3, 9, 4]]
 
 # GRID2
 
@@ -169,17 +169,17 @@ def table():
             if column == 6:
                 print("｜", end="")
 
-            if (sudokugamegrid[row][column]) <= 10:
+            if (table1hard[row][column]) <= 10:
                 print(" ", purple, gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+                    table1hard[row][column]), reset, sep="", end=" ")
 
-            elif (sudokugamegrid[row][column]) > 20:
+            elif (table1hard[row][column]) > 20:
                 print(" ", blue, bold, gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+                    table1hard[row][column]), reset, sep="", end=" ")
 
-            elif (sudokugamegrid[row][column]) > 10 and (sudokugamegrid[row][column]) < 20:
+            elif (table1hard[row][column]) > 10 and (table1hard[row][column]) < 20:
                 print(" ", yellow, bold, gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+                    table1hard[row][column]), reset, sep="", end=" ")
 
         print()
 
@@ -202,9 +202,9 @@ def tableblank():
                 print("｜", end="")
             if column == 6:
                 print("｜", end="")
-            if sudokugamegridblank[row][column] == 10:
+            if table_blank[row][column] == 10:
                 print(" ", purple, gridtransformer(
-                    sudokugamegridblank[row][column]), reset, sep="", end=" ")
+                    table_blank[row][column]), reset, sep="", end=" ")
         print()
 
     print("   -----------------------------")
@@ -240,7 +240,7 @@ def handleinput():
             os.system('cls' if os.name == 'nt' else 'clear')
             table()
             sudoku_list_matcher(clonelist)
-            if int(sudoku_match_sum(clonelist, sudokugridsolution)) == int(81):
+            if int(sudoku_match_sum(clonelist, table1solution)) == int(81):
                 table()
                 print("\n!!!!!!!!!!!!YOU WON!!!!!!!!!!!!")
                 input("Press any key to exit")
@@ -259,7 +259,7 @@ def handleinput():
                     raise IndexError
                 if inputvalue not in range(1, 11):
                     raise ValueError
-                if sudokugamegrid[inputrow][inputcolumn] > 10:
+                if table1hard[inputrow][inputcolumn] > 10:
                     raise ReferenceError
                 return inputrow, inputcolumn, inputvalue,
 
@@ -280,8 +280,8 @@ def handleinput():
 def hint():
     for row in range(0, 9):
         for column in range(0, 9):
-            if sudokugamegrid[row][column] == sudokugridsolution[row][column]:
-                sudokugamegrid[row][column] = sudokugamegrid[row][column] + 20
+            if table1hard[row][column] == table1solution[row][column]:
+                table1hard[row][column] = table1hard[row][column] + 20
 
 
 # Checking the solution by comparing the user modified basic grid with the
@@ -313,8 +313,8 @@ def sudoku_match_sum(x, y):
 
 def map_selector():
 
-    global sudokugamegrid
-    global sudokugridsolution
+    global table1hard
+    global table1solution
 
     while True:
 
@@ -332,34 +332,34 @@ Type in your choice:""")
         if x == "map1 hard":
             break
         if x == "map1 normal":
-            sudokugamegrid = sudokugamegridnormal
+            table1hard = table1normal
             break
         if x == "map1 easy":
-            sudokugamegrid = sudokugamegrideasy
+            table1hard = table1easy
             break
         if x == "map2 hard":
-            sudokugamegrid = table2hard
-            sudokugridsolution = table2solution
+            table1hard = table2hard
+            table1solution = table2solution
             break
         if x == "map2 normal":
-            sudokugamegrid = table2normal
-            sudokugridsolution = table2solution
+            table1hard = table2normal
+            table1solution = table2solution
             break
         if x == "map2 easy":
-            sudokugamegrid = table2easy
-            sudokugridsolution = table2easy
+            table1hard = table2easy
+            table1solution = table2easy
             break
         if x == "map3 hard":
-            sudokugamegrid = table3hard
-            sudokugridsolution = table3solution
+            table1hard = table3hard
+            table1solution = table3solution
             break
         if x == "map3 normal":
-            sudokugamegrid = table3normal
-            sudokugridsolution = table3solution
+            table1hard = table3normal
+            table1solution = table3solution
             break
         if x == "map3 easy":
-            sudokugamegrid = table3easy
-            sudokugridsolution = table3solution
+            table1hard = table3easy
+            table1solution = table3solution
             break
         if x == "exit":
             exit()
@@ -404,9 +404,9 @@ while True:
 
     print("\n")
 
-    clone_list(sudokugamegrid)
+    clone_list(table1hard)
 
-    clonelist = clone_list(sudokugamegrid)
+    clonelist = clone_list(table1hard)
 
     row, column, value = handleinput()
 
@@ -414,7 +414,7 @@ while True:
 
     table()
 
-    sudokugamegrid[row][column] = value
+    table1hard[row][column] = value
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
