@@ -147,27 +147,6 @@ table3solution = [[1, 4, 5, 3, 2, 7, 6, 9, 8],
                   [9, 8, 4, 7, 6, 1, 2, 3, 5],
                   [5, 2, 1, 8, 3, 9, 7, 6, 4]]
 
-"""sudokugamegrid4 = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
-                   [10, 10, 10, 14, 19, 15, 10, 10, 10],
-                   [15, 10, 16, 10, 10, 10, 11, 10, 14],
-                   [10, 10, 11, 18, 10, 12, 13, 10, 10],
-                   [10, 11, 10, 10, 17, 10, 10, 10, 16],
-                   [10, 10, 13, 12, 10, 10, 10, 18, 10],
-                   [10, 16, 10, 15, 10, 10, 10, 10, 19],
-                   [10, 10, 14, 10, 10, 10, 10, 13, 10],
-                   [10, 10, 10, 10, 10, 19, 17, 10, 10]]
-
-
-sudokugridsolution4 = [[4, 7, 3, 2, 6, 1, 5, 9, 8],
-                       [8, 1, 2, 4, 9, 5, 3, 6, 7],
-                       [5, 9, 6, 3, 7, 8, 1, 2, 4],
-                       [7, 3, 1, 8, 5, 2, 6, 4, 9],
-                       [9, 2, 8, 1, 4, 6, 7, 5, 3],
-                       [6, 4, 5, 7, 3, 9, 2, 8, 1],
-                       [2, 6, 4, 9, 1, 3, 8, 7, 5],
-                       [3, 5, 9, 6, 8, 7, 4, 1, 2],
-                       [1, 8, 7, 5, 2, 4, 9, 3, 6]]"""
-
 
 # Generates the grid from the source and adds visuals. Also adds basic
 # rules about the displayed grid (17 visualised as 7 etc.)
@@ -249,7 +228,7 @@ def gridtransformer(x):
 def handleinput():
     while True:
         inputfield = input(
-            "\nAdd the coordinates and the value(example: 1a5).\nYou can delete with value '10'.\nOr write 'check' to check your solution.\nOr press exit to quit.\n\nEnter you choice:")
+            "\nAdd the coordinates and the value(example: 1a5).\nYou can delete with value '10'.\nWrite 'check' to check your solution!\nOr type 'hint' if you want\nto check your good numbers!\nOr type 'exit' to quit!\n\nEnter you choice:")
         if inputfield == str("exit"):
             exit()
         if inputfield == str("hint"):
@@ -319,8 +298,6 @@ def sudoku_list_matcher(x):
         for n in range(0, 9):
             if x[i][n] > 10:
                 x[i][n] = x[i][n] - 10
-           # if x[i][n] > 20:
-            #    x[i][n] = x[i][n] - 20
 
 
 def sudoku_match_sum(x, y):
@@ -329,10 +306,9 @@ def sudoku_match_sum(x, y):
         for n in range(0, 9):
             if x[i][n] == y[i][n]:
                 how_many_matches.append(1)
-                #y[i][n] += 20
             else:
                 how_many_matches.append(0)
-    return sum(how_many_matches)  # , y
+    return sum(how_many_matches)
 
 
 def map_selector():
@@ -344,13 +320,13 @@ def map_selector():
 
         os.system('cls' if os.name == 'nt' else 'clear')
         tableblank()
-        print ("\n\n")
+        print("\n\n")
 
         x = input("""Please choose from three grid and
 three difficulty level, like you see in this example:
 'map1 normal' or 'map3 hard'
 If you want to quit type 'exit'
-You only can pass with a valid input. 
+You only can pass with a valid input.
 Type in your choice:""")
 
         if x == "map1 hard":
@@ -394,25 +370,25 @@ Type in your choice:""")
 os.system('cls' if os.name == 'nt' else 'clear')
 print("\033[1m", "\033[93m", '''    _n____n__
      /         \---||--<  ___EXTERMINATE--
-    <___________>                   --SUDOKU___ 
-    _|____|____|_ 
+    <___________>                   --SUDOKU___
     _|____|____|_
-     |    |    | 
-    -------------- 
-    | || || || ||\ 
-    | || || || || \++++++++------< 
-    =============== 
-    |   |  |  |   |            by Petya 
-   (| O | O| O| O |)                & Dénes 
-   |   |   |   |   | 
-  (| O | O | O | O |) 
-   |   |   |   |    | 
+    _|____|____|_
+     |    |    |
+    --------------
+    | || || || ||\
+    | || || || || \++++++++------<
+    ===============
+    |   |  |  |   |            by Petya
+   (| O | O| O| O |)                & Dénes
+   |   |   |   |   |
+  (| O | O | O | O |)
+   |   |   |   |    |
  (| O |  O | O  | O |)
   |   |    |    |    |
  (| O |  O |  O |  O |)
  ======================''', "\033[m", "\033[0;0m")
 print("""\nAdd numbers correctly into their places.\nYou can quit the game on the checker screen.\nEnter the coordinates and the value(example: '1a5')! \nUse the helper grids to identify the coordinates!\nUse 10 value as delete like in this example: 1a10.""")
-time.sleep(1)
+time.sleep(6)
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Running the functions in the proper order.
@@ -426,7 +402,7 @@ while True:
 
     table()
 
-    print ("\n")
+    print("\n")
 
     clone_list(sudokugamegrid)
 
