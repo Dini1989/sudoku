@@ -17,7 +17,7 @@ sudokugamegridblank = [[10, 10, 10, 10, 10, 10, 10, 10, 10],
                        [10, 10, 10, 10, 10, 10, 10, 10, 10],
                        [10, 10, 10, 10, 10, 10, 10, 10, 10]]
 
-sudokugamegrid = [[10, 17, 15, 10, 19, 10, 10, 10, 16],
+sudokugamegrid = [[10, 27, 15, 10, 19, 10, 10, 10, 16],
                   [10, 12, 13, 10, 18, 10, 10, 14, 10],
                   [18, 10, 10, 10, 10, 13, 10, 10, 11],
                   [15, 10, 10, 17, 10, 12, 10, 10, 10],
@@ -176,7 +176,7 @@ def table():
     reset = "\033[0;0m"
     yellow = "\033[93m"
     purple = "\033[95m"
-    # blue = "\033[92m"
+    blue = "\033[92m"
     print("   a  b  c    d  e  f    g  h  i\n")
     for row in range(0, 9):
         if row == 3:
@@ -189,15 +189,19 @@ def table():
                 print("｜", end="")
             if column == 6:
                 print("｜", end="")
-            if (sudokugamegrid[row][column]) > 10:
-                print(" ", yellow, bold, gridtransformer(
-                    sudokugamegrid[row][column]), reset, sep="", end=" ")
-            #if (sudokugamegrid[row][column]) > 20:
-                #print(" ", blue, bold, gridtransformer(
-                    #sudokugamegrid[row][column]), reset, sep="", end=" ")
-            else:
+
+            if (sudokugamegrid[row][column]) <= 10:
                 print(" ", purple, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
+
+            if (sudokugamegrid[row][column]) > 20:
+                print(" ", blue, bold, gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+
+            if (sudokugamegrid[row][column]) > 10 and (sudokugamegrid[row][column]) < 20:
+                print(" ", yellow, bold, gridtransformer(
+                    sudokugamegrid[row][column]), reset, sep="", end=" ")
+
         print()
 
     print("   -----------------------------")
@@ -228,12 +232,12 @@ def tableblank():
 
 
 def gridtransformer(x):
-    if x > 10:
+    if x > 10 and x < 20:
         return x - 10
     if x == 10:
         return "·"
-    #if x > 20
-        #return x - 20
+    if x > 20:
+        return x - 20
     return x
 
 
@@ -316,7 +320,7 @@ def sudoku_match_sum(x, y):
                 #y[i][n] += 20
             else:
                 how_many_matches.append(0)
-    return sum(how_many_matches)#, y
+    return sum(how_many_matches)  # , y
 
 
 def map_selector():
