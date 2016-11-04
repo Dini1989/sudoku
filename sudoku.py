@@ -252,6 +252,11 @@ def handleinput():
             "\nAdd the coordinates and the value(example: 1a5).\nYou can delete with value '10'.\nOr write 'check' to check your solution.\nOr press exit to quit.\n\nEnter you choice:")
         if inputfield == str("exit"):
             exit()
+        if inputfield == str("hint"):
+            os.system('cls' if os.name == 'nt' else 'clear')
+            hint()
+            table()
+
         if inputfield == str("check"):
             os.system('cls' if os.name == 'nt' else 'clear')
             table()
@@ -291,6 +296,13 @@ def handleinput():
                 os.system('cls' if os.name == 'nt' else 'clear')
                 table()
                 print("\nYou can't modify the basefield value!")
+
+
+def hint():
+    for row in range(0, 9):
+        for column in range(0, 9):
+            if sudokugamegrid[row][column] == sudokugridsolution[row][column]:
+                sudokugamegrid[row][column] = sudokugamegrid[row][column] + 20
 
 
 # Checking the solution by comparing the user modified basic grid with the
