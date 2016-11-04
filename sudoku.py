@@ -194,11 +194,11 @@ def table():
                 print(" ", purple, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
 
-            if (sudokugamegrid[row][column]) > 20:
+            elif (sudokugamegrid[row][column]) > 20:
                 print(" ", blue, bold, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
 
-            if (sudokugamegrid[row][column]) > 10 and (sudokugamegrid[row][column]) < 20:
+            elif (sudokugamegrid[row][column]) > 10 and (sudokugamegrid[row][column]) < 20:
                 print(" ", yellow, bold, gridtransformer(
                     sudokugamegrid[row][column]), reset, sep="", end=" ")
 
